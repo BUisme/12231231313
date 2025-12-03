@@ -214,6 +214,37 @@
       text-align: center;
     }
 
+    /* ปุ่มกลับหน้า Project Hub */
+    .back-home {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .back-home a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: #ffffffcc;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 13px;
+      color: #444;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .back-home a:hover {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .back-home a span.icon {
+      font-size: 14px;
+    }
+
     @media (max-width: 420px) {
       body {
         padding: 18px 10px;
@@ -271,6 +302,13 @@
 
       <div class="footer-note">
         from Day, with a lot of soft feelings. 💗
+      </div>
+
+      <div class="back-home">
+        <a href="https://buisme.github.io/day-project-hub/">
+          <span class="icon">←</span>
+          <span>กลับหน้า Project Hub ของเดย์</span>
+        </a>
       </div>
     </div>
   </div>
