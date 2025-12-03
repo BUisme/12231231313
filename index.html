@@ -1,1 +1,376 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <title>New Year Wish by Day 💌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe5f1, #ffe7d9, #e5f3ff);
+      color: #222;
+      overflow: hidden;
+    }
+
+    /* พื้นหลังหัวใจลอย ๆ */
+    .bg-hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-heart {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.35;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translate3d(0, 40px, 0) scale(0.9);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.4;
+      }
+      80% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translate3d(0, -80vh, 0) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card {
+      width: min(480px, 94vw);
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 28px;
+      padding: 20px 18px 22px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* แถบบนการ์ด */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 193, 7, 0.18));
+      opacity: 0.8;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: #fff3e0;
+      color: #d84315;
+      margin-top: 4px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ff7043;
+    }
+
+    .msg-wrapper {
+      margin: 16px 0 14px;
+      position: relative;
+    }
+
+    .msg-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #e3f2fd;
+      color: #1565c0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 14px 14px;
+      border-radius: 18px;
+      background: #fce4ec;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: pre-line;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .message-rare {
+      background: #fff3e0;
+      box-shadow: 0 0 0 2px rgba(255, 167, 38, 0.5);
+    }
+
+    .rare-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 999px;
+      background: #ffebee;
+      color: #b71c1c;
+      border: 1px solid rgba(198, 40, 40, 0.3);
+      transform-origin: center;
+      animation: pulseRare 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseRare {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.35); }
+      100% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(244, 67, 54, 0); }
+    }
+
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .btn-main {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 26px;
+      font-size: 15px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff5c93, #ff9966);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-main span.icon {
+      font-size: 17px;
+    }
+
+    .btn-main:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.24);
+      opacity: 0.96;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #888;
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 16px 14px 18px;
+        border-radius: 22px;
+      }
+      .message {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- พื้นหลังหัวใจลอย -->
+  <div class="bg-hearts" id="bgHearts"></div>
+
+  <div class="wrapper">
+    <div class="card">
+      <div class="card-inner">
+        <h1>New Year Wish by Day 🎀</h1>
+        <div class="subtitle">สุ่มคำอวยพรปีใหม่ให้คนพิเศษของเดย์ 💌</div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>มีข้อความลับ 1 ใน 100 ซ่อนอยู่จริง ๆ นะ</span>
+        </div>
+
+        <div class="msg-wrapper">
+          <div id="rareTag" class="rare-tag" style="display:none;">
+            ⭐ โหมดลับ 1 ใน 100 ⭐
+          </div>
+          <div class="msg-badge" id="badgeText">
+            สุ่มอวยพรให้แล้วนะ 💫
+          </div>
+          <div id="msg" class="message">
+            กดปุ่มด้านล่างเพื่อสุ่มคำอวยพรนะ 💖
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-main" onclick="rollWish()">
+            <span class="icon">✨</span>
+            <span>สุ่มคำอวยพรอีกครั้ง</span>
+          </button>
+          <div class="hint">ลองกดเล่นสักพัก บางทีอาจเจอข้อความลับก็ได้ 😉</div>
+        </div>
+
+        <div class="footer-note">
+          from Day, with a lot of soft feelings. 💗
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ข้อความพิเศษ (1 ใน 100)
+    const specialMessage =
+      "รักนะไอหน้าหมามีความสุขเยอะๆนะ ยิ้มบ้าง รักนะจุ๊บ.";
+
+    // คำอวยพรปีใหม่ทั่วไป
+    const normalWishes = [
+      "สวัสดีปีใหม่ ขอให้ปีนี้เป็นปีที่เธอยิ้มบ่อยกว่าปีที่แล้วนะ ❤",
+      "ขอให้ทุกความฝันของเธอค่อย ๆ กลายเป็นจริงทีละอย่างนะ",
+      "ปีใหม่นี้ขอให้เจอแต่คนที่ดีกับหัวใจเธอ 🙂",
+      "สุขภาพดี การเงินดี การเรียน/งานปัง ความรักน่ารักพอ ๆ กับเธอเลย",
+      "ปีนี้ขอให้ได้ทำในสิ่งที่รัก แล้วก็มีคนรักในสิ่งที่เธอเป็นด้วย",
+      "ให้ปีใหม่เต็มไปด้วยโปรเจกต์ที่สำเร็จ กับบั๊กที่แก้ง่าย ๆ 🤍",
+      "ขอให้ทุกเช้าที่ตื่นมา เธอรู้สึกว่า ‘ดีจังที่ยังมีวันนี้ให้ลองใหม่อีกครั้ง’",
+      "ปีนี้ขอให้หัวใจเธอเบาขึ้น เหนื่อยน้อยลง แต่ยิ้มมากขึ้นนะ",
+      "ขอให้มีทริปสนุก ๆ ความทรงจำดี ๆ และรูปสวย ๆ เต็มเครื่องเลย",
+      "ขอให้เจอคนที่เห็นค่าเธอแบบที่เธอควรจะได้รับจริง ๆ",
+      "ปีใหม่นี้ ขอให้ทุกอย่างที่ไม่ดี ค่อย ๆ หลุดออกไป เหลือแต่สิ่งที่ใช่",
+      "ให้ปีนี้เป็นปีที่เธอรักตัวเองมากที่สุดเท่าที่เคยเป็นมา",
+      "ขอให้บ้านอบอุ่น เพื่อนน่ารัก และคนข้าง ๆ ใส่ใจเสมอ",
+      "ขอให้เธอหัวเราะจนลืมไปเลยว่าช่วงไหนเคยร้องไห้บ้าง",
+      "ปีใหม่นี้ ไม่ว่าเธอจะเริ่มอะไร ขอให้เริ่มแบบมั่นใจและจบแบบมีความสุข",
+      "ขอให้ทุกความพยายามของเธอ มีคนมองเห็นและชื่นชมอย่างจริงใจ",
+      "ให้ปีนี้คำว่า ‘เหนื่อย’ น้อยลง แต่คำว่า ‘ดีจัง’ เพิ่มขึ้น",
+      "ขอให้เธอมีแรงใจเยอะ ๆ ต่อให้โลกวุ่นวาย แต่หัวใจยังนุ่มเหมือนเดิม",
+      "ปีใหม่ขอให้เธอเก่งขึ้น มีความสุขขึ้น และยังน่ารักเท่าเดิมไม่เปลี่ยน",
+      "สุดท้าย…ขอให้ทุกวันของเธอ มีอย่างน้อยหนึ่งโมเมนต์ที่ทำให้ยิ้มออกนะ :)"
+    ];
+
+    function rollWish() {
+      const msgEl = document.getElementById("msg");
+      const rareTag = document.getElementById("rareTag");
+      const badgeText = document.getElementById("badgeText");
+
+      // สุ่ม 0–99 → ถ้าได้ 0 = ข้อความพิเศษ (1/100)
+      const lucky = Math.floor(Math.random() * 100) === 0;
+
+      msgEl.classList.remove("message-rare");
+
+      if (lucky) {
+        msgEl.textContent = specialMessage;
+        rareTag.style.display = "inline-flex";
+        msgEl.classList.add("message-rare");
+        badgeText.textContent = "โชคดีมากกก เจอข้อความลับแล้ว ⭐";
+      } else {
+        const i = Math.floor(Math.random() * normalWishes.length);
+        msgEl.textContent = normalWishes[i];
+        rareTag.style.display = "none";
+        badgeText.textContent = "สุ่มอวยพรให้แล้ว 💌";
+      }
+
+      // เอฟเฟกต์เด้งเบา ๆ เวลาเปลี่ยนข้อความ
+      msgEl.style.transform = "scale(0.97)";
+      msgEl.style.boxShadow = "0 6px 14px rgba(0,0,0,0.12)";
+      setTimeout(() => {
+        msgEl.style.transform = "scale(1)";
+        msgEl.style.boxShadow = "none";
+      }, 160);
+    }
+
+    // สร้างหัวใจลอยพื้นหลัง
+    function createHearts() {
+      const container = document.getElementById("bgHearts");
+      const colors = ["#ff8a80", "#ff80ab", "#ffb74d", "#ce93d8"];
+
+      for (let i = 0; i < 14; i++) {
+        const span = document.createElement("span");
+        span.className = "bg-heart";
+        span.textContent = "❤";
+
+        const left = Math.random() * 100;
+        const delay = Math.random() * 8;
+        const duration = 10 + Math.random() * 10;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = 14 + Math.random() * 10;
+
+        span.style.left = left + "%";
+        span.style.bottom = (-10 - Math.random() * 20) + "px";
+        span.style.animationDuration = duration + "s";
+        span.style.animationDelay = delay + "s";
+        span.style.color = color;
+        span.style.fontSize = size + "px";
+
+        container.appendChild(span);
+      }
+    }
+
+    window.addEventListener("load", () => {
+      createHearts();
+      rollWish(); // สุ่มให้รอบแรกตอนเปิดหน้า
+    });
+  </script>
+</body>
+</html>
 
